@@ -34,6 +34,9 @@ public:
     std::list<std::shared_ptr<Post>> getPosts() const;
     void viewFriendsPosts() const;
 
+    void setId(unsigned long id);
+    void setName(const std::string &name);
+
     void addFriend(std::shared_ptr<User> u);
     void removeFriend(std::shared_ptr<User> u);
     void post(const std::string &text);
