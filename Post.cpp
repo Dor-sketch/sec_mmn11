@@ -6,29 +6,33 @@ Post::Post(const std::string& text) {
 }
 
 // post must include text, and optionally one media of type photo, audio, or video
-Post::Post(const std::string& text, Media* media) {
-    if (text == "") { // if text is empty
-        throw "Post error: Text cannot be empty";
+Post::Post(const std::string &text, std::shared_ptr<Media> media)
+{
+    if (text == "")
+    {
+        throw std::invalid_argument("Post error: Text cannot be empty");
     }
     this->text = text;
-    if (media->getType() == "audio") {
+    if (media == nullptr)
+    {
+        this->media = nullptr;
+    }
+    else if (media->getType() == "audio" || media->getType() == "video" || media->getType() == "photo")
+    {
         this->media = media;
-    } else if (media->getType() == "video") {
-        this->media = media;
-    } else if (media->getType() == "photo") {
-        this->media = media;
-    } else {
-        throw "Media errer: Invalid media type";
+    }
+    else
+    {
+        throw std::invalid_argument("Media error: Invalid media type");
     }
 }
 
-std::string Post::getText() const{
-    return this->text;
-}
-
-Media* Post::getMedia() const{
+std::shared_ptr<Media> Post::getMedia() const
+{
     return this->media;
 }
 
-
-
+const std::string Post::getText() const
+{
+    return text;
+}

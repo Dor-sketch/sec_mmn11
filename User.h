@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include <memory>
 #include "Media.h"
 #include "Post.h"
 #include "Message.h"
@@ -14,36 +15,39 @@ class User
 {
 private:
     friend class USocial;
-    User();  // private ctor should not be called
+    User(); // private ctor should not be called
+
 protected:
-    USocial* us;
+    std::weak_ptr<USocial> us; // weak_ptr to avoid circular dependency
     unsigned long id;
     std::string name;
     std::list<unsigned long> friends;
-    std::list<Post*> posts;
-    std::list<Message*> receivedMsgs;
+    std::list<std::shared_ptr<Post>> posts;
+    std::list<std::shared_ptr<Message>> receivedMsgs;
+
 public:
-    explicit User(USocial *us); // Ensures every user has a pointer to USocial
+    explicit User(std::shared_ptr<USocial> us); // Ensures every user has a pointer to USocial
     virtual ~User();
 
     unsigned long getId() const;
     std::string getName() const;
-    std::list<Post*> getPosts() const;
+    std::list<std::shared_ptr<Post>> getPosts() const;
     void viewFriendsPosts() const;
 
-    void addFriend(User* u);
-    void removeFriend(User* u);
+    void addFriend(std::shared_ptr<User> u);
+    void removeFriend(std::shared_ptr<User> u);
     void post(const std::string &text);
-    void post(const std::string &text, Media *media);
-    void receiveMessage(Message* m);
-    virtual void sendMessage(User* u,  Message* m);
+    void post(const std::string &text, std::shared_ptr<Media> media);
+    void receiveMessage(std::shared_ptr<Message> m);
+    virtual void sendMessage(std::shared_ptr<User> u, std::shared_ptr<Message> m);
     void viewReceivedMessages();
 };
 
-class BusinessUser : public User {
+class BusinessUser : public User
+{
 public:
-    explicit BusinessUser(USocial *us);
-    void sendMessage(User *u, Message *m) override;  // business user can send messages to multiple users
+    explicit BusinessUser(std::shared_ptr<USocial> us);
+    void sendMessage(std::shared_ptr<User> u, std::shared_ptr<Message> m) override; // business user can send messages to multiple users
 };
 
 #endif /* USER_H_ */
