@@ -1,21 +1,21 @@
-/*
-* USocial.cpp
-*/
-
 #include "USocial.h"
 #include <iostream>
 
-// only way to create a user is through USocial
-User * USocial::registerUser(string name, bool isBusiness) {
-    User* u;
-    if (isBusiness) {
+User *USocial::registerUser(const std::string& name, bool isBusiness)
+{
+    User *u;
+    if (isBusiness)
+    {
         u = new BusinessUser(this);
-    } else {
+    }
+    else
+    {
         u = new User(this);
     }
     u->name = name; // set the name
     unsigned long newId = 0;
-    while (users.find(newId) != users.end()) { // loop until we find an available ID
+    while (users.find(newId) != users.end())
+    { 
         if (users[newId] == nullptr)
             break;
         newId++;
@@ -25,42 +25,55 @@ User * USocial::registerUser(string name, bool isBusiness) {
     return u;
 }
 
-User *USocial::registerUser(string name) {
+User *USocial::registerUser(const std::string &name)
+{
     return registerUser(name, false); // in case of non-business user
 }
 
-void USocial::removeUser(User* u) {
-    User* user = getUserById(u->id);
-    if(user == NULL) { // check if the user exists
+void USocial::removeUser(User *u)
+{
+    if (users.find(u->id) == users.end())
+    {
+        // User not in the map, can't proceed
         throw std::runtime_error("Remove User Failed. User not found");
     }
 
-    // remove the user from his friends' lists
-    for (list<unsigned long>::iterator it = u->friends.begin(); it != u->friends.end(); ++it) {
-        User* friendUser = getUserById(*it);
-        if (friendUser != nullptr) {
+    // At this point, we know the user exists in the map.
+    // Now, remove the user from his friends' lists.
+    for (std::list<unsigned long>::iterator it = u->friends.begin();
+         it != u->friends.end(); ++it)
+    {
+        User *friendUser = getUserById(*it);
+        if (friendUser != nullptr)
+        {
             friendUser->friends.remove(u->getId());
         }
     }
-    users.erase(u->id); // remove the user from the map of users
-    delete u;           // free the memory allocated for the user object
+
+    users.erase(u->id); // remove user from the map
+    delete u;
+    u = nullptr;
 }
 
-// show all users currently in the social network - for debugging
-void USocial::showAllUsers() {
-    cout << "USocial Users:" << endl;
-    map<unsigned long, User*> usersCopy;
-    for (map<unsigned long, User*>::iterator it = users.begin(); it != users.end(); ++it) {
-        if (it->second != nullptr) { // check if the user exists
-            usersCopy.insert(pair<unsigned long, User*>(it->first, it->second));
+void USocial::showAllUsers()
+{
+    std::cout << "USocial Users:" << std::endl;
+    std::map<unsigned long, User *> usersCopy;
+    for (std::map<unsigned long, User *>::iterator it = users.begin(); it != users.end(); ++it)
+    {
+        if (it->second != nullptr)
+        { // check if the user exists
+            usersCopy.insert(std::pair<unsigned long, User *>(it->first, it->second));
         }
     }
-    for (map<unsigned long, User*>::iterator it = usersCopy.begin(); it != usersCopy.end(); ++it) {
-        std::cout << it->first << " => " << it->second->getName() << endl;
+    for (std::map<unsigned long, User *>::iterator it = usersCopy.begin(); it != usersCopy.end(); ++it)
+    {
+        std::cout << it->first << " => " << it->second->getName() << std::endl;
     }
 }
 
-User *USocial::getUserById(unsigned long id) {
+User *USocial::getUserById(unsigned long id)
+{
     return users[id];
 }
 

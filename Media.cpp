@@ -1,7 +1,3 @@
-/*
-* Media.cpp
-*/
-
 #include "Media.h"
 #include <iostream>
 

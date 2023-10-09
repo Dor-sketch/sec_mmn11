@@ -2,7 +2,7 @@
 CC = g++
 
 # Compiler flags
-CFLAGS = -Wall -std=c++11
+CFLAGS = -g -Wall -std=c++14
 
 # Source files
 SOURCES = USocial.cpp User.cpp Post.cpp Message.cpp Media.cpp main.cpp

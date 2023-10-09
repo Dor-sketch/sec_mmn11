@@ -1,17 +1,13 @@
-/*
-* Post.cpp
-*/
-
 #include "Post.h"
 
-Post::Post(string text) {
+Post::Post(const std::string& text) {
     this->text = text;
     this->media = nullptr;
 }
 
 // post must include text, and optionally one media of type photo, audio, or video
-Post::Post(string text, Media* media) {
-    if (text == "") { // check if text is empty
+Post::Post(const std::string& text, Media* media) {
+    if (text == "") { // if text is empty
         throw "Post error: Text cannot be empty";
     }
     this->text = text;
@@ -26,7 +22,7 @@ Post::Post(string text, Media* media) {
     }
 }
 
-string Post::getText() const{
+std::string Post::getText() const{
     return this->text;
 }
 

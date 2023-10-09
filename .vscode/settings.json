@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.pgsql": "postgres",
+        "*.sql": "postgres",
+        "memory": "cpp"
+    }
+}

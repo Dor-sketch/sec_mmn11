@@ -1,14 +1,11 @@
-/*
-* Message.cpp
-*/
-
 #include "Message.h"
 
-Message::Message(string text) {
+Message::Message(const std::string &text)
+{
     this->text = text;
 }
 
-string Message::getText() {
+std::string Message::getText() const
+{
     return text;
 }
-

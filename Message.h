@@ -1,20 +1,14 @@
-/*
-* Message.h
-*/
-
-#include <string>
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
+#include <string>
 
-using namespace std;
-
-// message must include a text
 class Message {
 private:
-    string text;
+    std::string text;
+    
 public:
-    string getText();       // getter
-    Message(string text);   // constructor
+    Message(const std::string &text); // ctor makes sure that every message has a text
+    std::string getText() const;
 };
 
 #endif /* MESSAGE_H_ */
