@@ -2,52 +2,58 @@
 
 ## Introduction
 
-USocial is a basic social media system simulation written in C++. The system supports various functionalities, such as registering users, posting text and media, adding and removing friends, sending and receiving messages, etc. This project was originally developed as an assignment for the Open University of Israel course "Defensive System-Programming (20937)" and has now been shared as part of a portfolio for student job applications.
+USocial is a basic social media system simulation written in C++. It offers a suite of functionalities that mirror core features of popular social media platforms. This project allows users to engage in typical social media activities, from posting text and multimedia to adding friends and exchanging messages. Originally conceived as a coursework project for the Open University of Israel course "Defensive System-Programming (20937)", it now serves a dual role, also being a part of a job application portfolio for students.
 
 ## Technologies Used
-- C++ (with C++14 features)
-- Smart pointers (`std::shared_ptr`, `std::weak_ptr`) for resource management and avoiding memory leaks
-- Standard Library containers (`std::map`, `std::list`)
-- Exception handling for error scenarios
-- Object-oriented principles, inheritance, and polymorphism
+
+- **C++**: The primary language used, incorporating C++14 features.
+- **Smart Pointers**: Usage of `std::shared_ptr` and `std::weak_ptr` to manage resources efficiently and prevent memory leaks.
+- **Standard Library Containers**: Leveraged `std::map` and `std::list` for data storage and management.
+- **Exception Handling**: Integrated throughout for handling potential error scenarios.
+- **Object-Oriented Principles**: The architecture is built upon principles like inheritance and polymorphism.
 
 ## Features
 
 ### USocial
-- Central system for managing users.
-- Register users with or without business status.
-- Remove users.
-- Retrieve users by ID.
-- Display all users (for debugging purposes).
+
+- Acts as a hub for user management.
+- Facilitates user registration, with options for standard or business status.
+- Allows user removal from the system.
+- Provides user retrieval functionality via ID.
+- Offers a display of all users, primarily for debugging purposes.
 
 ### User
-- Post text or media.
-- Add or remove friends.
-- View friend's posts.
-- Send and receive messages.
-- Business users have an added ability to send messages to multiple users at once.
+
+- Users can create posts with text and multimedia content.
+- Provides capabilities to add or remove friends.
+- Enables users to view posts from their friends.
+- Facilitates the sending and receiving of messages.
+- Business users get the added perk of broadcasting messages to multiple users simultaneously.
 
 ### Media
-- Abstract class that serves as a base for various media types.
-- Supports Photo, Audio, and Video as media types.
-- Each media type has a method to display its content.
+
+- An abstract base class for various media types.
+- Currently supports Photo, Audio, and Video subclasses.
+- Each media type has a unique method to showcase its content.
 
 ### Post
-- Represents user posts that may contain text and/or media.
+
+- Symbolizes user-generated content that may be a blend of text and media.
 
 ### Message
-- Represents the messages exchanged between users.
+
+- Denotes the exchange of messages between users, be it text or media.
 
 ## Compilation and Usage
 
-The project is bundled with a `Makefile` that simplifies the build process. To compile and run the system, simply follow the steps below:
+A `Makefile` is included to streamline the build process. To set the system in motion, adhere to the following sequence:
 
 ```bash
-$ make
-$ ./usocial_app
+make
+./usocial_app
 ```
 
-To clean up the build artifacts:
+For a cleanup of the build residue:
 
 ```bash
 $ make clean
@@ -55,16 +61,16 @@ $ make clean
 
 ## Sample Execution
 
-The provided main function demonstrates various functionalities of the USocial system, such as registering users, posting content, adding friends, sending messages, and handling errors (e.g., trying to add an already existing friend or sending a message to a non-friend). 
+A preconfigured main function offers a walkthrough of the USocial system's multifaceted features. This includes registering users, crafting posts, forging friendships, initiating message exchanges, and simulating potential error scenarios (e.g., repetitive friend additions or sending messages to non-friends).
 
 ## Contributing
 
-If you'd like to contribute, feel free to fork the project, make your changes, and submit a pull request. All contributions are welcome.
+Contributions are heartily welcomed. Start by forking the project, instate your modifications, and initiate a pull request.
 
 ## License
 
-This project is available under the MIT License. See LICENSE file for details.
+USocial is distributed under the MIT License.
 
 ## Contact
 
-For any inquiries, suggestions, or feedback, please reach out via [email](mailto:dor.pascal@gmail.com).
+Feedback, suggestions, or inquiries? Please direct them to [email](mailto:dor.pascal@gmail.com).
