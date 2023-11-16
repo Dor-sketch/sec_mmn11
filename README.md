@@ -4,6 +4,10 @@
 
 USocial is a basic social media system simulation written in C++. It offers a suite of functionalities that mirror core features of popular social media platforms. This project allows users to engage in typical social media activities, from posting text and multimedia 📸🎥🎵 to adding friends 👫 and exchanging messages ✉️. Originally conceived as a coursework project for the Open University of Israel course "Defensive System-Programming (20937)", it now serves a dual role, also being a part of a job application portfolio for students.
 
+![image](https://github.com/Dor-sketch/sec_mmn11/assets/138825033/391f7b72-17ec-4dde-9951-957a65577cfb)
+
+---
+
 ## 🔧 Technologies Used
 
 - **C++**: The primary language used, incorporating C++14 features.
