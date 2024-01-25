@@ -10,6 +10,7 @@ SOURCES += main.cpp \
     User.cpp \
     USocial.cpp \
     USocialTester.cpp \
+    MainWindow.cpp \
 
 HEADERS += MainWindow.h \
     Media.hpp \

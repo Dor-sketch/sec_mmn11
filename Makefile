@@ -58,7 +58,8 @@ SOURCES       = main.cpp \
 		Post.cpp \
 		User.cpp \
 		USocial.cpp \
-		UsocialTester.cpp moc_MainWindow.cpp
+		UsocialTester.cpp \
+		MainWindow.cpp moc_MainWindow.cpp
 OBJECTS       = main.o \
 		Media.o \
 		Message.o \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		User.o \
 		USocial.o \
 		UsocialTester.o \
+		MainWindow.o \
 		moc_MainWindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -156,7 +158,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Post.cpp \
 		User.cpp \
 		USocial.cpp \
-		UsocialTester.cpp
+		UsocialTester.cpp \
+		MainWindow.cpp
 QMAKE_TARGET  = USocial
 DESTDIR       = 
 TARGET        = USocial
@@ -341,7 +344,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents MainWindow.h Media.hpp Message.hpp Post.hpp User.hpp USocial.hpp USocialTester.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp Media.cpp Message.cpp Post.cpp User.cpp USocial.cpp UsocialTester.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp Media.cpp Message.cpp Post.cpp User.cpp USocial.cpp UsocialTester.cpp MainWindow.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -443,6 +446,15 @@ UsocialTester.o: UsocialTester.cpp USocialTester.hpp \
 		Message.hpp \
 		Post.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UsocialTester.o UsocialTester.cpp
+
+MainWindow.o: MainWindow.cpp MainWindow.h \
+		USocialTester.hpp \
+		USocial.hpp \
+		User.hpp \
+		Media.hpp \
+		Message.hpp \
+		Post.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

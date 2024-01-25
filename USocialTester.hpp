@@ -15,20 +15,25 @@ constexpr const char *USER_SUPER_EITAN = "Super Eitan";
 constexpr const char *USER_BAD_GUY = "Bad Guy";
 
 class USocialTester {
-private:
-  std::shared_ptr<spdlog::logger> logger_;
-  std::shared_ptr<USocial> us_;
-  std::map<std::string, unsigned long>
-      userIds_; // to map usernames to their ids
 
 public:
   USocialTester();
   void runTests();
   std::shared_ptr<User> getUserByName(const std::string &name);
   std::vector<std::shared_ptr<User>> getAllUsers();
+  static void initializeLogger() {
+    if (!logger_) {
+      logger_ = spdlog::stdout_color_mt("USocialTester");
+    }
+  }
 
-private :
-    void testRegisterUsers();
+private:
+  static std::shared_ptr<spdlog::logger> logger_;
+  std::shared_ptr<USocial> us_;
+  std::map<std::string, unsigned long>
+      userIds_; // to map usernames to their ids
+
+  void testRegisterUsers();
   void registerUserAndStoreId(const std::string &name);
   void registerUserAndStoreId(const std::string &name, bool isBusiness);
   void testPosts();

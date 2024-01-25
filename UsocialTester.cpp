@@ -1,12 +1,10 @@
 
 
 #include "USocialTester.hpp"
-
+std::shared_ptr<spdlog::logger> USocialTester::logger_ = nullptr;
 USocialTester::USocialTester() {
   // Set up logger
-  spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] %v");
-  logger_ = spdlog::stdout_color_mt("USocialTester");
-
+  initializeLogger();
   // Initialize USocial
   us_ = std::make_shared<USocial>();
 }
