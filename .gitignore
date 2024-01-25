@@ -1,2 +1,5 @@
 *.pdf
 q1.cpp
+.qmake.stash
+USocial
+*.json

@@ -2,6 +2,7 @@
 
 #include <map>
 #include <memory>
+#include <vector>
 
 #include "User.hpp"
 
@@ -12,6 +13,7 @@ class USocial : public std::enable_shared_from_this<USocial> {
   friend class User;  // User class is a friend of USocial
 
  public:
+ std::vector<std::shared_ptr<User>> getAllUsers();
   std::shared_ptr<User> registerUser(
       const std::string &name,
       bool isBusiness);  // The 'bool' parameter indicates if the user is a

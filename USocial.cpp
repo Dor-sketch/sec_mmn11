@@ -18,6 +18,16 @@ void User::setName(const std::string &newName) {
   name = newName;
 }
 
+std::vector<std::shared_ptr<User>> USocial::getAllUsers() {
+  std::vector<std::shared_ptr<User>> allUsers;
+  for (const auto &pair : users) {
+    unsigned long id = pair.first;
+    std::shared_ptr<User> userPtr = pair.second;
+    allUsers.push_back(userPtr);
+  }
+  return allUsers;
+}
+
 std::shared_ptr<User> USocial::registerUser(const std::string &name,
                                             bool isBusiness) {
   std::shared_ptr<User> u;
